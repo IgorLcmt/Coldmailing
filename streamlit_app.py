@@ -70,12 +70,12 @@ def scrape_website(url, max_pages=4, timeout=8):
 
 def build_prompt(company, text):
     prompt = (
-        f"Napisz w języku polskim krótką, profesjonalną pochwałę (1-3 zdania) skierowaną do zarządu spółki \"{company}\". "
-        f"Pochwała powinna być w drugiej osobie liczby mnogiej, w formie bezpośredniej (używaj 'Państwa', 'doceniamy', 'zwracamy uwagę', 'jesteśmy pod wrażeniem'). "
-        f"Odnieś się do konkretnych atutów, osiągnięć, projektów lub przewag konkurencyjnych tej spółki. "
-        f"Unikaj przesadnego entuzjazmu – zachowaj profesjonalny, rzeczowy ton. "
-        f"Nie wspominaj o naszej firmie ani o inwestycji, nie rekomenduj spółki innym, nie streszczaj tekstu źródłowego. "
-        f"Nie pisz nic poza pochwałą. "
+        f"Jesteśmy potencjalnym inwestorem i zwróciliśmy uwagę na spółkę \"{company}\". "
+        f"Napisz w języku polskim jedno krótkie zdanie (maksymalnie dwa), które bezpośrednio i konkretnie wyraża, dlaczego zainteresowaliśmy się tą firmą oraz co szczególnie nas w niej przekonuje. "
+        f"Użyj formy bezpośredniej ('Państwa firma przykuła naszą uwagę, ponieważ...'). "
+        f"Unikaj ogólników i nie używaj zwrotów typu 'polecamy jako partnera'. "
+        f"Nie wspominaj o naszej firmie ani o inwestycji wprost, skup się na atutach spółki widocznych na stronie. "
+        f"Nie pisz nic poza komplementem. "
         f"Poniżej znajduje się opis oraz treść strony:\n\n{text}"
     )
     return prompt
