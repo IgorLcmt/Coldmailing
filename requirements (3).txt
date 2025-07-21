@@ -1,0 +1,6 @@
+streamlit>=1.25
+openai>=1.0.0
+pandas
+openpyxl
+requests
+beautifulsoup4
