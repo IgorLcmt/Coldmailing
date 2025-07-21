@@ -70,11 +70,11 @@ def scrape_website(url, max_pages=4, timeout=8):
 
 def build_prompt(company, text):
     prompt = (
-        f"Jako przedstawiciel potencjalnego inwestora, który rozważa nabycie mniejszościowego pakietu udziałów w Państwa spółce, "
-        f"na podstawie poniższego opisu oraz informacji ze strony internetowej firmy \"{company}\", "
-        f"napisz w języku polskim jedną, profesjonalną i spersonalizowaną pochwałę (1-3 zdania), "
-        f"zwracając się bezpośrednio do odbiorcy w 2. osobie liczby mnogiej (np. Wasze kompetencje, Państwa projekty, doceniamy to, że...). "
-        f"Pochwała powinna nawiązywać do rozwoju branży, w której działa firma, oraz wskazywać, że zwracamy uwagę na jej sukcesy i wyróżniki rynkowe. "
+        f"Napisz w języku polskim krótką, profesjonalną pochwałę (1-3 zdania) skierowaną do zarządu spółki \"{company}\". "
+        f"Pochwała powinna być w drugiej osobie liczby mnogiej, w formie bezpośredniej (używaj 'Państwa', 'doceniamy', 'zwracamy uwagę', 'jesteśmy pod wrażeniem'). "
+        f"Odnieś się do konkretnych atutów, osiągnięć, projektów lub przewag konkurencyjnych tej spółki. "
+        f"Unikaj przesadnego entuzjazmu – zachowaj profesjonalny, rzeczowy ton. "
+        f"Nie wspominaj o naszej firmie ani o inwestycji, nie rekomenduj spółki innym, nie streszczaj tekstu źródłowego. "
         f"Nie pisz nic poza pochwałą. "
         f"Poniżej znajduje się opis oraz treść strony:\n\n{text}"
     )
