@@ -71,7 +71,7 @@ def scrape_website(url, max_pages=4, timeout=8):
 def build_prompt(company, text):
     prompt = (
         f"Jesteśmy potencjalnym inwestorem i zwróciliśmy uwagę na spółkę \"{company}\". "
-        f"Napisz w języku polskim jedno krótkie zdanie (maksymalnie dwa), które bezpośrednio i konkretnie wyraża, dlaczego zainteresowaliśmy się tą firmą oraz co szczególnie nas w niej przekonuje. "
+        f"Napisz w języku polskim jedno krótkie dwa zdania (maksymalnie trzy), które bezpośrednio i konkretnie wyraża, dlaczego zainteresowaliśmy się tą firmą oraz co szczególnie nas w niej przekonuje. "
         f"Użyj formy bezpośredniej ('Państwa firma przykuła naszą uwagę, ponieważ...'). "
         f"Unikaj ogólników i nie używaj zwrotów typu 'polecamy jako partnera'. "
         f"Nie wspominaj o naszej firmie ani o inwestycji wprost, skup się na atutach spółki widocznych na stronie. "
