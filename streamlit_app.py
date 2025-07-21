@@ -70,12 +70,13 @@ def scrape_website(url, max_pages=4, timeout=8):
 
 def build_prompt(company, text):
     prompt = (
-        f"Jesteśmy potencjalnym inwestorem i zwróciliśmy uwagę na spółkę \"{company}\". "
-        f"Napisz w języku polskim jedno krótkie dwa zdania (maksymalnie trzy), które bezpośrednio i konkretnie wyraża, dlaczego zainteresowaliśmy się tą firmą oraz co szczególnie nas w niej przekonuje. "
-        f"Użyj formy bezpośredniej ('Państwa firma przykuła naszą uwagę, ponieważ...'). "
-        f"Unikaj ogólników i nie używaj zwrotów typu 'polecamy jako partnera'. "
-        f"Nie wspominaj o naszej firmie ani o inwestycji wprost, skup się na atutach spółki widocznych na stronie. "
-        f"Nie pisz nic poza komplementem. "
+        f"Jako potencjalny inwestor rozważający nabycie udziałów w spółce \"{company}\", "
+        f"napisz w języku polskim krótką, profesjonalną wypowiedź (2-3 zdania) skierowaną bezpośrednio do zarządu tej spółki, "
+        f"która wyjaśnia, dlaczego zainteresowaliśmy się tą konkretną firmą oraz co zwróciło naszą uwagę na tle rynku. "
+        f"Uwzględnij konkretne atuty, przewagi konkurencyjne, tempo wzrostu, projekty lub liczby (jeśli są dostępne w tekście). "
+        f"Jeśli z tekstu wynika, że firma działa w branży aktualnie atrakcyjnej dla inwestorów (np. IT, low-code/no-code, medycyna, weterynaria, AI, logistyka itp.), podkreśl to. "
+        f"Używaj drugiej osoby liczby mnogiej (Państwa, Wasza spółka, zwracamy się do Państwa itd.), bądź rzeczowy i precyzyjny. "
+        f"Nie używaj ogólnych zwrotów ani pochwał bez konkretów. Nie pisz nic poza taką profesjonalną informacją o motywach zainteresowania i mocnych stronach firmy. "
         f"Poniżej znajduje się opis oraz treść strony:\n\n{text}"
     )
     return prompt
