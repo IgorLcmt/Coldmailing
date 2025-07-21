@@ -1,5 +1,5 @@
 streamlit>=1.25
 openai>=1.0.0
+beautifulsoup4
 pandas
 openpyxl
-beautifulsoup4
