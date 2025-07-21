@@ -72,7 +72,8 @@ def build_prompt(company, text):
         f"Jako przedstawiciel potencjalnego inwestora zainteresowanego objęciem mniejszościowego pakietu udziałów w spółce, "
         f"na podstawie poniższego opisu oraz informacji ze strony internetowej firmy \"{company}\", "
         f"napisz w języku polskim jedną, profesjonalną i spersonalizowaną pochwałę (1-2 zdania), "
-        f"która autentycznie odwołuje się do konkretnych osiągnięć, strategii, produktów lub wartości tej spółki. "
+        f"która autentycznie odwołuje się do konkretnych osiągnięć, strategii, produktów, projektów lub wdrożeń tej spółki. "
+        f"Jeśli to możliwe, wymień nazwę konkretnego projektu lub produktu firmy, który wywarł na nas największe wrażenie. "
         f"Zwróć uwagę na unikalność i wyróżniki firmy oraz pokaż, że dokładnie zapoznaliśmy się z jej działalnością. "
         f"Nie pisz nic poza pochwałą. "
         f"Poniżej znajduje się opis oraz treść strony:\n\n{text}"
@@ -85,8 +86,8 @@ def generate_gpt_compliment(company, scraped_text):
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": prompt}],
-        temperature=0.7,
-        max_tokens=80
+        temperature=0.5,
+        max_tokens=150
     )
     compliment = response.choices[0].message.content.strip()
     compliment = re.sub(r'^Szanown[ya].*?[,!]\s*', '', compliment)
