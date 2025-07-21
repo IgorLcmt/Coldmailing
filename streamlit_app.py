@@ -70,13 +70,14 @@ def scrape_website(url, max_pages=4, timeout=8):
 
 def build_prompt(company, text):
     prompt = (
-        f"Jako potencjalny inwestor rozważający nabycie udziałów w spółce \"{company}\", "
-        f"napisz w języku polskim krótką, profesjonalną wypowiedź (2-3 zdania) skierowaną bezpośrednio do zarządu tej spółki, "
-        f"która wyjaśnia, dlaczego zainteresowaliśmy się tą konkretną firmą oraz co zwróciło naszą uwagę na tle rynku. "
-        f"Uwzględnij konkretne atuty, przewagi konkurencyjne, tempo wzrostu, projekty lub liczby (jeśli są dostępne w tekście). "
-        f"Jeśli z tekstu wynika, że firma działa w branży aktualnie atrakcyjnej dla inwestorów (np. IT, low-code/no-code, medycyna, weterynaria, AI, logistyka itp.), podkreśl to. "
-        f"Używaj drugiej osoby liczby mnogiej (Państwa, Wasza spółka, zwracamy się do Państwa itd.), bądź rzeczowy i precyzyjny. "
-        f"Nie używaj ogólnych zwrotów ani pochwał bez konkretów. Nie pisz nic poza taką profesjonalną informacją o motywach zainteresowania i mocnych stronach firmy. "
+        f"Jako potencjalny inwestor zainteresowany współpracą z firmą \"{company}\", "
+        f"napisz w języku polskim krótką, profesjonalną wypowiedź (2-3 zdania) skierowaną do zarządu tej spółki. "
+        f"Podkreśl, że zwracamy uwagę na Państwa kompetencje, innowacyjność oraz unikalne projekty i rozwiązania, "
+        f"które dostarczacie swoim klientom biznesowym. Jeśli spółka tworzy technologie lub systemy dla innych firm, "
+        f"zaznacz wprost, że są Państwo twórcą rozwiązań, które wspierają rozwój i cyfryzację swoich partnerów z branży, "
+        f"ale nie sugeruj, że sami oferujecie te usługi końcowym użytkownikom. "
+        f"Unikaj ogólników, pisz zwięźle i rzeczowo, pokazując prawdziwą rolę spółki na rynku B2B lub technologicznym. "
+        f"Nie pisz nic poza tą wypowiedzią. "
         f"Poniżej znajduje się opis oraz treść strony:\n\n{text}"
     )
     return prompt
