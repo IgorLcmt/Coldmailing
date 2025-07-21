@@ -69,10 +69,13 @@ def scrape_website(url, max_pages=4, timeout=8):
 
 def build_prompt(company, text):
     prompt = (
-        f"Na podstawie poniższego opisu firmy oraz informacji ze strony internetowej, "
-        f"napisz jedną krótką, spersonalizowaną pochwałę (1-2 zdania) w języku polskim, "
-        f"na temat firmy \"{company}\", jej działalności lub projektów. "
-        f"Nie pisz nic poza pochwałą. Tekst strony:\n\n{text}"
+        f"Jako przedstawiciel potencjalnego inwestora zainteresowanego objęciem mniejszościowego pakietu udziałów w spółce, "
+        f"na podstawie poniższego opisu oraz informacji ze strony internetowej firmy \"{company}\", "
+        f"napisz w języku polskim jedną, profesjonalną i spersonalizowaną pochwałę (1-2 zdania), "
+        f"która autentycznie odwołuje się do konkretnych osiągnięć, strategii, produktów lub wartości tej spółki. "
+        f"Zwróć uwagę na unikalność i wyróżniki firmy oraz pokaż, że dokładnie zapoznaliśmy się z jej działalnością. "
+        f"Nie pisz nic poza pochwałą. "
+        f"Poniżej znajduje się opis oraz treść strony:\n\n{text}"
     )
     return prompt
 
