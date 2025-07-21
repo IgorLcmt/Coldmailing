@@ -88,7 +88,7 @@ def generate_gpt_compliment(company, scraped_text):
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": prompt}],
         temperature=0.5,
-        max_tokens=150
+        max_tokens=200
     )
     compliment = response.choices[0].message.content.strip()
     compliment = re.sub(r'^Szanown[ya].*?[,!]\s*', '', compliment)
