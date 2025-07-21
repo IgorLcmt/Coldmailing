@@ -8,6 +8,8 @@ from urllib.parse import urljoin, urlparse
 import time
 import re
 import io
+from polish_names import get_vocative
+
 
 # ---- Helper functions ----
 def get_visible_text(html):
@@ -94,9 +96,10 @@ def generate_gpt_compliment(company, scraped_text):
     return compliment
 
 def build_full_email(person, opening, compliment, ending):
-    first_name = person.split()[0]
+    first_name = person.split()[0].title()
+    vocative = get_vocative(first_name)
     email = (
-        f"Szanowny Panie {first_name},\n\n"
+        f"Szanowny Panie {vocative},\n\n"
         f"{opening.strip()}\n\n"
         f"{compliment.strip()}\n\n"
         f"{ending.strip()}"
