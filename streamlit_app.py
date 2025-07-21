@@ -109,8 +109,8 @@ st.set_page_config(page_title="GenAI Cold Email Generator", layout="wide")
 st.title("✉️ GenAI: Personalizowane maile coldmailingowe")
 
 st.sidebar.header("📝 Opcje e-maila")
-opening = st.sidebar.text_area("Wstęp (Opening)", value="Piszę do Państwa, ponieważ zainteresowała mnie Państwa działalność.")
-ending = st.sidebar.text_area("Zakończenie (Ending)", value="Będę wdzięczny za kontakt i możliwość rozmowy o potencjalnej współpracy.\nZ wyrazami szacunku,\nTwoje Imię")
+opening = st.sidebar.text_area("Wstęp (Opening)", value=" ")
+ending = st.sidebar.text_area("Zakończenie (Ending)", value="")
 
 st.sidebar.info("API key OpenAI jest pobierany z `.streamlit/secrets.toml`", icon="🔑")
 
