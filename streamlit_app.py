@@ -69,38 +69,25 @@ def scrape_website(url, max_pages=4, timeout=8):
         return None
 
 def build_investor_comment(company, gpt_reason, gpt_industry):
-    # szablon do personalizacji
     template = (
-        f"Od pewnego czasu z zainteresowaniem obserwujemy rozwój spółek w branży {gpt_industry}. "
-        f"{company} znalazła się w kręgu naszego zainteresowania ze względu na {gpt_reason}, "
-        f"które wpisuje się w strategię inwestycyjną CMT Family Office. "
-        f"Rozważamy możliwość zaangażowania się poprzez dofinansowanie spółki lub nabycie pakietu mniejszościowego nawiązując partnerską współpracę."
+        f"Od pewnego czasu z zainteresowaniem obserwujemy rozwój spółek w branży {gpt_industry}, "
+        f"a Państwa firma przykuła naszą uwagę, ponieważ {gpt_reason} "
+        f"– co wpisuje się w strategię inwestycyjną CMT Family Office. "
+        f"Rozważamy możliwość zaangażowania się poprzez dofinansowanie spółki lub nabycie pakietu mniejszościowego, nawiązując partnerską współpracę."
     )
     return template
-    
-def build_prompt(company, text):
-    prompt = (
-        f"Jako potencjalny inwestor zainteresowany współpracą z firmą \"{company}\", "
-        f"napisz w języku polskim krótką, profesjonalną wypowiedź (2-3 zdania) skierowaną do zarządu tej spółki. "
-        f"Podkreśl, że zwracamy uwagę na Państwa kompetencje, innowacyjność oraz unikalne projekty i rozwiązania, "
-        f"które dostarczacie swoim klientom biznesowym. Jeśli spółka tworzy technologie lub systemy dla innych firm, "
-        f"zaznacz wprost, że są Państwo twórcą rozwiązań, które wspierają rozwój i cyfryzację swoich partnerów z branży, "
-        f"ale nie sugeruj, że sami oferujecie te usługi końcowym użytkownikom. "
-        f"Unikaj ogólników, pisz zwięźle i rzeczowo, pokazując prawdziwą rolę spółki na rynku B2B lub technologicznym. "
-        f"Nie pisz nic poza tą wypowiedzią. "
-        f"Poniżej znajduje się opis oraz treść strony:\n\n{text}"
-    )
-    return prompt
 
-def get_company_industry(scraped_text, client):
+def get_company_reason(scraped_text, client):
     prompt = (
-        f"Na podstawie poniższego opisu określ jednym słowem lub krótką frazą, w jakiej branży działa ta spółka. "
-        f"Nie pisz nic więcej.\n\n{scraped_text}"
+        "Na podstawie poniższego opisu napisz jednym zdaniem po polsku, co szczególnie wyróżnia tę spółkę na tle rynku i dlaczego mogła przykuć uwagę inwestora. "
+        "Nie używaj pełnej nazwy spółki, nie powtarzaj tego, że inwestor zwrócił uwagę – napisz tylko o tym, co wyróżnia firmę (np. technologie, przewagi, wyniki, unikalny produkt). "
+        "Nie pisz nic poza tym zdaniem.\n\n"
+        f"{scraped_text}"
     )
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=10
+        max_tokens=80
     )
     return response.choices[0].message.content.strip()
 
