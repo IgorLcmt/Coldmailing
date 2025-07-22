@@ -87,19 +87,20 @@ def get_company_reason(scraped_text, client):
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=80
+        max_tokens=100
     )
     return response.choices[0].message.content.strip()
 
-def get_company_reason(scraped_text, client):
+def get_company_industry(scraped_text, client):
     prompt = (
-        f"Na podstawie poniższego opisu napisz w języku polskim jednym zdaniem, co szczególnie wyróżnia tę spółkę "
-        f"i dlaczego mogła przykuć uwagę inwestora. Nie pisz nic poza tym zdaniem.\n\n{scraped_text}"
+        "Na podstawie poniższego opisu określ jednym słowem lub krótką frazą, w jakiej branży działa ta spółka. "
+        "Nie pisz nic więcej.\n\n"
+        f"{scraped_text}"
     )
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=100
+        max_tokens=30
     )
     return response.choices[0].message.content.strip()
 
