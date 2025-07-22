@@ -116,11 +116,6 @@ def get_company_reason(scraped_text, client):
     )
     return response.choices[0].message.content.strip()
 
-# Potem w głównej pętli:
-industry = get_company_industry(scraped_text, client)
-reason = get_company_reason(scraped_text, client)
-comment = build_investor_comment(company, scraped_text, reason, industry)
-
 def build_full_email(person, opening, compliment, ending):
     first_name = person.split()[0].title()  # tylko pierwsze słowo z dużej litery
     email = (
@@ -161,8 +156,10 @@ if uploaded_file:
                 st.warning(f"❌ Nie udało się pobrać danych z: {website} (pomijam)", icon="⚠️")
                 continue
             try:
-                compliment = generate_gpt_compliment(company, scraped)
-                full_email = build_full_email(person, opening, compliment, ending)
+                industry = get_company_industry(scraped, client)
+                reason = get_company_reason(scraped, client)
+                comment = build_investor_comment(company, reason, industry)
+                full_email = build_full_email(person, opening, comment, ending)
                 results.append({
                     **row,
                     "Personalizowany email": full_email
