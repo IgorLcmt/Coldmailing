@@ -68,6 +68,16 @@ def scrape_website(url, max_pages=4, timeout=8):
     except Exception:
         return None
 
+def build_investor_comment(company, gpt_reason, gpt_industry):
+    # szablon do personalizacji
+    template = (
+        f"Od pewnego czasu z zainteresowaniem obserwujemy rozwój spółek w branży {gpt_industry}. "
+        f"{company} znalazła się w kręgu naszego zainteresowania ze względu na {gpt_reason}, "
+        f"które wpisuje się w strategię inwestycyjną CMT Family Office. "
+        f"Rozważamy możliwość zaangażowania się poprzez dofinansowanie spółki lub nabycie pakietu mniejszościowego nawiązując partnerską współpracę."
+    )
+    return template
+    
 def build_prompt(company, text):
     prompt = (
         f"Jako potencjalny inwestor zainteresowany współpracą z firmą \"{company}\", "
@@ -82,18 +92,34 @@ def build_prompt(company, text):
     )
     return prompt
 
-def generate_gpt_compliment(company, scraped_text):
-    prompt = build_prompt(company, scraped_text[:3500])  # truncate for GPT input
-    client = openai.OpenAI(api_key=st.secrets["openai_api_key"])
+def get_company_industry(scraped_text, client):
+    prompt = (
+        f"Na podstawie poniższego opisu określ jednym słowem lub krótką frazą, w jakiej branży działa ta spółka. "
+        f"Nie pisz nic więcej.\n\n{scraped_text}"
+    )
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": prompt}],
-        temperature=0.5,
-        max_tokens=200
+        max_tokens=10
     )
-    compliment = response.choices[0].message.content.strip()
-    compliment = re.sub(r'^Szanown[ya].*?[,!]\s*', '', compliment)
-    return compliment
+    return response.choices[0].message.content.strip()
+
+def get_company_reason(scraped_text, client):
+    prompt = (
+        f"Na podstawie poniższego opisu napisz w języku polskim jednym zdaniem, co szczególnie wyróżnia tę spółkę "
+        f"i dlaczego mogła przykuć uwagę inwestora. Nie pisz nic poza tym zdaniem.\n\n{scraped_text}"
+    )
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=100
+    )
+    return response.choices[0].message.content.strip()
+
+# Potem w głównej pętli:
+industry = get_company_industry(scraped_text, client)
+reason = get_company_reason(scraped_text, client)
+comment = build_investor_comment(company, scraped_text, reason, industry)
 
 def build_full_email(person, opening, compliment, ending):
     first_name = person.split()[0].title()  # tylko pierwsze słowo z dużej litery
