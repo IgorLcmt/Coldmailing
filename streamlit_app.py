@@ -142,7 +142,7 @@ if uploaded_file:
     df = pd.read_excel(uploaded_file)
     st.dataframe(df.head())
     if st.button("Generuj maile"):
-        openai.api_key = st.secrets["openai_api_key"]
+        client = openai.OpenAI(api_key=st.secrets["openai_api_key"]) 
         results = []
         for idx, row in df.iterrows():
             company = str(row.get("Nazwa firmy", "")).strip()
